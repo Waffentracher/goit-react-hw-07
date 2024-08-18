@@ -1,0 +1,34 @@
+// src/components/ContactList/ContactList.jsx
+import { useSelector, useDispatch } from 'react-redux';
+import {  selectContactsLoading, selectContactsError, selectFilteredContacts } from '../../redux/contactsSlice';
+import { deleteContact } from '../../redux/contactsOps'; // Переконайтесь, що цей імпорт правильний
+import Contact from '../Contact/Contact';
+import styles from './ContactList.module.css';
+
+const ContactList = () => {
+  const contacts = useSelector(selectFilteredContacts);
+  const loading = useSelector(selectContactsLoading);
+  const error = useSelector(selectContactsError);
+  const dispatch = useDispatch();
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return (
+    <ul className={styles.list}>
+      {contacts.map(contact => (
+        <li key={contact.id} className={styles.item}>
+          <Contact contact={contact} />
+          <button
+            onClick={() => dispatch(deleteContact(contact.id))}
+            className={styles.button}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default ContactList;

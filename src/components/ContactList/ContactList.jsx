@@ -1,7 +1,7 @@
-// src/components/ContactList/ContactList.jsx
+
 import { useSelector, useDispatch } from 'react-redux';
 import {  selectContactsLoading, selectContactsError, selectFilteredContacts } from '../../redux/contactsSlice';
-import { deleteContact } from '../../redux/contactsOps'; // Переконайтесь, що цей імпорт правильний
+import { deleteContact } from '../../redux/contactsOps'; 
 import Contact from '../Contact/Contact';
 import styles from './ContactList.module.css';
 

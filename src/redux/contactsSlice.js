@@ -56,7 +56,6 @@ export const selectContacts = (state) => state.contacts.items;
 export const selectContactsLoading = (state) => state.contacts.loading;
 export const selectContactsError = (state) => state.contacts.error;
 
-// src/redux/contactsSlice.js
 import { createSelector } from "reselect";
 
 export const selectFilteredContacts = createSelector(

@@ -1,8 +1,6 @@
-// src/App.jsx
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './redux/store';
+import { store } from './redux/store'; // Використовуйте іменований імпорт
 import { fetchContacts } from './redux/contactsOps';
 import ContactsForm from './components/ContactsForm/ContactsForm';
 import ContactList from './components/ContactList/ContactList';
@@ -16,14 +14,12 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <div className="App">
-          <h1>Contact Book</h1>
-          <ContactsForm />
-          <SearchBox />
-          <ContactList />
-        </div>
-      </PersistGate>
+      <div className="App">
+        <h1>Contact Book</h1>
+        <ContactsForm />
+        <SearchBox />
+        <ContactList />
+      </div>
     </Provider>
   );
 };

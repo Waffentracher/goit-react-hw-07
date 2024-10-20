@@ -1,25 +1,33 @@
 import { useEffect } from 'react';
-import { Provider } from 'react-redux';
-import { store } from './redux/store'; // Використовуйте іменований імпорт
+import { Provider, useDispatch } from 'react-redux';
+import { store } from './redux/store'; 
 import { fetchContacts } from './redux/contactsOps';
 import ContactsForm from './components/ContactsForm/ContactsForm';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import './App.css';
 
-const App = () => {
+const AppContent = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    store.dispatch(fetchContacts());
-  }, []);
+    dispatch(fetchContacts()); 
+  }, [dispatch]);
 
   return (
+    <div className="App">
+      <h1>Contact Book</h1>
+      <ContactsForm />
+      <SearchBox />
+      <ContactList />
+    </div>
+  );
+};
+
+const App = () => {
+  return (
     <Provider store={store}>
-      <div className="App">
-        <h1>Contact Book</h1>
-        <ContactsForm />
-        <SearchBox />
-        <ContactList />
-      </div>
+      <AppContent /> 
     </Provider>
   );
 };
